@@ -5,4 +5,4 @@ Criei este repositório para compartilhar meus aprendizados de JavaScript. Inici
 
 O primeiro jogo é chamado de SuuB, um jogo de caça palavras onde o usuário tem que combinar palavras ocultadas.
 
-A maior dificuldade encontrada na primeira versão do SuuB foi a criação do timer crescente e decrecente. Compreender em qual momento do tempo executar cada ação foi o que dificultou mais a compreenção da lógica necessária para o timer ficar 100%.
+A maior dificuldade encontrada na primeira versão do SuuB foi a criação do timer crescente e decrescente. Compreender em qual momento do tempo executar cada ação foi o que dificultou mais a compreenção da lógica necessária para o timer ficar 100%.
