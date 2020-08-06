@@ -648,28 +648,40 @@ function jogoTimer() {
 
 		if (segundos < 60 && reversoSegundos > 0) {
 
-			document.getElementById('total-segundos').innerHTML = segundos
-			document.getElementById('total-segundos-reverso').innerHTML = reversoSegundos
+			if (segundos < 10) {
+				
+				document.getElementById('total-segundos').innerHTML = '0' + segundos
+
+			} else {
+				
+				document.getElementById('total-segundos').innerHTML = segundos
+
+			}
+
+			if (reversoSegundos < 10) {
+				
+				document.getElementById('total-segundos-reverso').innerHTML = '0' + reversoSegundos
+
+			} else {
+
+				document.getElementById('total-segundos-reverso').innerHTML = reversoSegundos
+			}
 
 			if (reversoSegundos == 59) {
-
+				
 				document.getElementById('total-minutos-reverso').innerHTML = '0' + minutosCredito
-
 			}	
 		}
 			
 		if (segundos == 60 && reversoSegundos == 0 && contadorParado == true) {				
-
-			document.getElementById('total-segundos-reverso').innerHTML = reversoSegundos 
+		
+			document.getElementById('total-segundos-reverso').innerHTML = '0' + reversoSegundos 
 			document.getElementById('total-segundos').innerHTML = '00'
-			
 			minutos++
 			document.getElementById('total-minutos').innerHTML = '0'+ minutos
 
 			if (minutosCredito > 0) {
-
 				minutosCredito--
-				
 				segundos = 0
 				reversoSegundos = 60
 
