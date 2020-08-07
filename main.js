@@ -64,6 +64,7 @@ function reiniciar() {
 
 }
 
+
 var pegarCorFundoPrimeiroTexto
 var pegarCorFundoSegundoTexto
 var guardarSegundoTexto
@@ -102,13 +103,14 @@ function contarAcertos(ID) {
 			// as pessoas tendem a abrir mão de combinações positivas optando então pelas negativas	
 
 		} else {
+
 		/* O else só é executado por que o primeiroClique já possui um valor diferente de 1 */
 
 			pegarCorFundoSegundoTexto = document.defaultView.getComputedStyle(pegarElemento, null)['backgroundColor']
 			guardarSegundoTexto = document.getElementById(ID).textContent
 			pegarSegundaClasse = document.getElementById(ID).className
 
-			window.dataLayer.push({'Texto1': guardarPrimeiroTexto, 'Texto2': guardarSegundoTexto, 'Classe1': primeiraClasse, 'Classe2': pegarSegundaClasse, 'corFundo1': pegarCorFundoPrimeiroTexto, 'corFundo2': pegarCorFundoSegundoTexto, 'nivel': nivel});
+			window.dataLayer.push({'Texto1': this.guardarPrimeiroTexto, 'Texto2': this.guardarSegundoTexto, 'Classe1': this.primeiraClasse, 'Classe2': this.pegarSegundaClasse, 'corFundo1': this.pegarCorFundoPrimeiroTexto, 'corFundo2': this.pegarCorFundoSegundoTexto, 'nivel': this.nivel});
 
 			if (primeiraClasse == pegarClasse && primeiroId != ID && pegarClasse != classeAcerto) {
 			/* Então um teste condicional compara a primeiraClasse do primeiro clique com a classe do segundo clique */
@@ -119,6 +121,7 @@ function contarAcertos(ID) {
 
 				pontos++
 				totalAcertosGeral++
+
 				/* Então um ponto é acrescentado ao nível e ao totalAcertosGeral */
 				/* então os pontos são atualizados e a classeAcerto é adicionada na primeira palavra identificada pelo primeiroID */
 				/* então o primeiro texto do primeiroClique é adiconado novamente no elemento atráves da variável guardarPrimeiroTexto */
@@ -129,7 +132,7 @@ function contarAcertos(ID) {
 				document.getElementById(ID).className = classeAcerto
 				document.getElementById(primeiroId).className = classeAcerto
 
-				document.getElementById(primeiroId).innerHTML = guardarPrimeiroTexto
+				document.getElementById(primeiroId).innerHTML = this.guardarPrimeiroTexto
 
 				primeiroClique = 0
 
@@ -143,8 +146,7 @@ function contarAcertos(ID) {
 
 				document.getElementById('total-erros').innerHTML = erros
 				document.getElementById('total-erros-geral').innerHTML = totalErrosGeral
-
-				document.getElementById(primeiroId).innerHTML = guardarPrimeiroTexto
+				document.getElementById(primeiroId).innerHTML = this.guardarPrimeiroTexto
 
 				primeiroClique = 0
 
