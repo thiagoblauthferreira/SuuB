@@ -1,0 +1,24 @@
+{
+  "name": "SuuB",
+  "version": "1.0.0",
+  "description": "Estudando JavaScript criando jogos",
+  "main": "main.js",
+  "scripts": {
+    "dev": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thiagoblauthferreira/SuuB.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thiagoblauthferreira/SuuB/issues"
+  },
+  "homepage": "https://github.com/thiagoblauthferreira/SuuB#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
+  }
+}

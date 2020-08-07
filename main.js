@@ -18,6 +18,7 @@ var i = 0
 var contadorParado
 
 
+
 function iniciar() {
 
 	iniciarJogo = 1
@@ -759,4 +760,5 @@ function jogoTimer() {
 
 window.load = setInterval(jogoTimer, 1000)
 window.dataLayer = window.dataLayer || [];
-  
+
+
