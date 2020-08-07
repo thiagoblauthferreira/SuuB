@@ -64,6 +64,10 @@ function reiniciar() {
 
 }
 
+var pegarCorFundoPrimeiroTexto
+var pegarCorFundoSegundoTexto
+var guardarSegundoTexto
+var pegarSegundaClasse
 
 function contarAcertos(ID) {
 
@@ -71,6 +75,9 @@ function contarAcertos(ID) {
 	/* Primeiro é feito um teste para verificar se o jogo foi iniciado. A variavel iniciarJogo contem zero por default */
 
 		var pegarClasse = document.getElementById(ID).className
+		var pegarElemento = document.getElementById(ID)
+		
+
 		/* pegarClasse pega a classe atual em css utilizada na palavra que foi clicada. O ID é referente ao ID da palavra clicada. */
 
 		if (primeiroClique == 0) {
@@ -82,22 +89,26 @@ function contarAcertos(ID) {
 		/* Então o document.getElementById(ID).innerHTML escreve substituindo a palavra atual por um texto contendo o nome da classe. */
 
 			primeiroClique = 1
-			
 			primeiraClasse = pegarClasse
 			primeiroId = ID
 			guardarPrimeiroTexto = document.getElementById(ID).textContent
 			document.getElementById(ID).innerHTML = pegarClasse
+			pegarCorFundoPrimeiroTexto = document.defaultView.getComputedStyle(pegarElemento, null)['backgroundColor']
 
 			// Incluir todas palavras utilizadas no primeiro clique
 			// A ideia é tentar identificar um padrão de comportamento
 			// Futuramente quero validar se as pessoas tendem a buscar combinações em
 			// palavras positivas ou negativas. Além de identificar em qual momento
-			// as pessoas tendem a abrir mão de combinações positivas optando então pelas negativas
-			
-			window.dataLayer.push({'texto': guardarPrimeiroTexto, 'primeiraClasse': primeiraClasse, 'nivel': nivel});
+			// as pessoas tendem a abrir mão de combinações positivas optando então pelas negativas	
 
 		} else {
 		/* O else só é executado por que o primeiroClique já possui um valor diferente de 1 */
+
+			pegarCorFundoSegundoTexto = document.defaultView.getComputedStyle(pegarElemento, null)['backgroundColor']
+			guardarSegundoTexto = document.getElementById(ID).textContent
+			pegarSegundaClasse = document.getElementById(ID).className
+
+			window.dataLayer.push({'Texto1': guardarPrimeiroTexto, 'Texto2': guardarSegundoTexto, 'Classe1': primeiraClasse, 'Classe2': pegarSegundaClasse, 'corFundo1': pegarCorFundoPrimeiroTexto, 'corFundo2': pegarCorFundoSegundoTexto, 'nivel': nivel});
 
 			if (primeiraClasse == pegarClasse && primeiroId != ID && pegarClasse != classeAcerto) {
 			/* Então um teste condicional compara a primeiraClasse do primeiro clique com a classe do segundo clique */
@@ -138,6 +149,7 @@ function contarAcertos(ID) {
 				primeiroClique = 0
 
 			}
+
 		}
 	}
 }
