@@ -70,6 +70,8 @@ var pegarCorFundoPrimeiroTexto
 var pegarCorFundoSegundoTexto
 var guardarSegundoTexto
 var pegarSegundaClasse
+var registroJogadas
+var xhr = new XMLHttpRequest()
 
 function contarAcertos(ID) {
 
@@ -111,7 +113,22 @@ function contarAcertos(ID) {
 			guardarSegundoTexto = document.getElementById(ID).textContent
 			pegarSegundaClasse = document.getElementById(ID).className
 
+			registroJogadas = {
+				"PrimeiroTextoClicado": guardarPrimeiroTexto, 
+				"SegundoTextoClicado": guardarSegundoTexto, 
+				"PrimeiraClasseClicada": primeiraClasse, 
+				"SegundaClasseClicada": pegarSegundaClasse, 
+				"PrimeiraCorDeFundo": pegarCorFundoPrimeiroTexto, 
+				"SegundaCorDeFundo": pegarCorFundoSegundoTexto, 
+				"NivelDoJogo": nivel,
+			}
+		
+			xhr.open("POST", "http://localhost:3000", true);
+			xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+			xhr.send(JSON.stringify(registroJogadas));
+
 			window.dataLayer.push({'Texto1': this.guardarPrimeiroTexto, 'Texto2': this.guardarSegundoTexto, 'Classe1': this.primeiraClasse, 'Classe2': this.pegarSegundaClasse, 'corFundo1': this.pegarCorFundoPrimeiroTexto, 'corFundo2': this.pegarCorFundoSegundoTexto, 'nivel': this.nivel});
+
 
 			if (primeiraClasse == pegarClasse && primeiroId != ID && pegarClasse != classeAcerto) {
 			/* Então um teste condicional compara a primeiraClasse do primeiro clique com a classe do segundo clique */
@@ -152,7 +169,6 @@ function contarAcertos(ID) {
 				primeiroClique = 0
 
 			}
-
 		}
 	}
 }
