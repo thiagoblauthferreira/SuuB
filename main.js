@@ -17,8 +17,6 @@ var acessandoDataLayer = []
 var i = 0
 var contadorParado
 
-
-
 function iniciar() {
 
 	iniciarJogo = 1
@@ -48,7 +46,6 @@ function reiniciar() {
 	document.getElementById('titulo-nivel').innerHTML = nivel
 	document.getElementById('total-creditos').innerHTML = creditos
 	
-
 	segundos = 0
 	minutos = 0
 	horas = 0
@@ -64,7 +61,6 @@ function reiniciar() {
 	document.getElementById('total-segundos-reverso').innerHTML = '00'
 
 }
-
 
 var pegarCorFundoPrimeiroTexto
 var pegarCorFundoSegundoTexto
@@ -173,6 +169,9 @@ function contarAcertos(ID) {
 	}
 }
 
+
+
+
 function resetarAcertos() {
 
 /* resetarClasse contem todos os elementos com a classe .acerto */
@@ -195,39 +194,39 @@ function resetarAcertos() {
 
 		if (testarResetar == 0) {
 
-			resetarClasse[i].className = "subc-01"
+			resetarClasse[i].className = "subc-1"
 
 		} else if (testarResetar == 1) {
 
-			resetarClasse[i].className = "subc-02"
+			resetarClasse[i].className = "subc-2"
 
 		} else if (testarResetar == 2) {
 
-			resetarClasse[i].className = "subc-03"
+			resetarClasse[i].className = "subc-3"
 
 		} else if (testarResetar == 3) {
 
-			resetarClasse[i].className = "subc-04"
+			resetarClasse[i].className = "subc-4"
 
 		} else if (testarResetar == 4) {
 
-			resetarClasse[i].className = "subc-05"
+			resetarClasse[i].className = "subc-5"
 
 		} else if (testarResetar == 5) {
 
-			resetarClasse[i].className = "subc-06"
+			resetarClasse[i].className = "subc-6"
 
 		} else if (testarResetar == 6) {
 
-			resetarClasse[i].className = "subc-07"
+			resetarClasse[i].className = "subc-7"
 
 		} else if (testarResetar == 7) {
 
-			resetarClasse[i].className = "subc-08"
+			resetarClasse[i].className = "subc-8"
 
 		} else if (testarResetar == 8) {
 
-			resetarClasse[i].className = "subc-09"
+			resetarClasse[i].className = "subc-9"
 
 		} else if (testarResetar == 9) {
 
@@ -240,16 +239,13 @@ function resetarAcertos() {
 var nivel = 1
 var creditos = 0
 var minutosCredito = 0
-
+var passouNivel = 0
 
 
 function avancarNivel() {
 /* Quando a função é chamada ela acrescenta mais um a variável nivel. */
 /* Zera o total de acertos do nível e zera o total de erros do nível */
 /* Também altera o título para o novo nível. */
-
-	segundos = 0
-	reversoSegundos = 60
 	
 	nivel++
 	
@@ -260,7 +256,6 @@ function avancarNivel() {
 	resetarAcertos()
 
 	contadorParado = confirm("Parabéns! Vá para o nível "+nivel);
-
 
 	if (pontos >= 5) {
 	/* Se os pontos ao final do tempo do nível for maior ou igual a 5 então um crédito é adicionado */
@@ -274,6 +269,9 @@ function avancarNivel() {
 	erros = 0
 	/* os erros do nível são zerados para iniciar o novo nível. */
 	/* então a variavel nivel é retornada com o valor atualizado. */
+
+	passouNivel = 1
+	
 	return nivel
 	return contadorParado
 
@@ -313,6 +311,7 @@ function contagemPontos() {
 				pontos = 0
 				segundosFinais = 0
 
+
 			} else if (nivel == 1 && pontos >= 3 && segundosFinais == 1) {
 			/* É verificado se o usuário está no nível um */
 			/* se tem pontos suficientes e se segundos finais acabaram*/
@@ -325,6 +324,7 @@ function contagemPontos() {
 				contadorParado = false
 				avancarNivel()
 				pontos = 0
+
 				return segundosFinais
 
 			} else if (nivel == 1 && pontos < 3 && creditos >= 0) {
@@ -652,14 +652,20 @@ var reversoSegundos = 60
 var reversoMinutos = 0
 var segundosFinais = 0
 
-
-
 function jogoTimer() {
-
+	
 	if (contadorParado == true && iniciarJogo == 1) {
 
 		reversoSegundos--
 		segundos++
+
+	}
+
+	if (passouNivel == 1) {
+
+		segundos = 0
+		reversoSegundos = 60
+		passouNivel = 0
 
 	}
 
@@ -703,6 +709,7 @@ function jogoTimer() {
 			document.getElementById('total-minutos').innerHTML = '0'+ minutos
 
 			if (minutosCredito > 0) {
+
 				minutosCredito--
 				segundos = 0
 				reversoSegundos = 60
@@ -726,6 +733,7 @@ function jogoTimer() {
 				reversoSegundos = 60
 
 				document.getElementById('total-minutos-reverso').innerHTML = '0' + (minutosCredito + 1)
+
 			}
 		}
 	}
@@ -766,7 +774,7 @@ function jogoTimer() {
 
 	if (iniciarJogo == 1 && contadorParado == true) {
 
-		if (segundosFinais == 1) {
+		 if (segundosFinais == 1) {
 									
 			contagemPontos()
 
